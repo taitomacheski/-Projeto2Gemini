@@ -1,29 +1,771 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guia de Segurança Digital - Navegue Seguro</title>
-  <style>
-    /* ==========================================
-       1. VARIÁVEIS E CONFIGURAÇÕES DE CORES
-       ========================================== */
-    :root {
-      /* Cores Padrão - Paleta Suave e Confortável */
-      --bg-principal: #fbf9f6;      /* Off-white quente, reduz o cansaço visual */
-      --bg-card: #ffffff;           /* Fundo dos cartões */
-      --texto-principal: #2b2520;   /* Grafite escuro para ótima leitura */
-      --texto-secundario: #5c534c;  /* Cinza médio para textos secundários */
-      --cor-primaria: #0d5cb3;       /* Azul acessível para links e destaques */
-      --cor-primaria-hover: #083d7a; /* Azul mais escuro ao passar o mouse */
-      --cor-sucesso: #1e7e34;        /* Verde para acertos e segurança */
-      --cor-alerta: #bd362f;         /* Vermelho para avisos importantes */
-      --cor-alerta-fundo: rgba(189, 54, 47, 0.08);
-      --borda: #dbd3cb;              /* Linhas divisórias suaves */
-      --banner-fundo: #e6f0fa;      /* Fundo suave para o banner inicial */
-      
-      /* Tipografia */
-      --fonte-familia: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      --tamanho-base: 1.25rem;       /* 20px - Ideal para leitura de idosos */
-      --espacamento-foco: 4px solid #ff9900; /* Destaque de teclado muito visível */
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Segura - Guia Prático e Direitos para a Terceira Idade</title>
+    <!-- Tailwind CSS para estilização rápida e responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons para ícones bonitos e acessíveis -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Estilos adicionais focados em acessibilidade e transições suaves */
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            transition: font-size 0.2s ease;
+        }
+        /* Foco visível para navegação amigável por teclado */
+        button:focus, a:focus {
+            outline: 4px solid #0284c7;
+            outline-offset: 2px;
+        }
+        /* Classes para ajuste dinâmico do tamanho das fontes (Acessibilidade) */
+        .font-normal-size { font-size: 1.125rem; } /* Padrão de 18px */
+        .font-large-size { font-size: 1.375rem; }  /* 22px */
+        .font-xlarge-size { font-size: 1.625rem; } /* 26px */
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-900 min-h-screen flex flex-col font-normal-size">
+
+    <!-- BARRA DE ACESSIBILIDADE SUPERIOR -->
+    <div class="bg-stone-800 text-white py-2 px-4 sticky top-0 z-50 shadow-md">
+        <div class="max-w-5xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <span class="font-bold flex items-center gap-2 text-sm sm:text-base">
+                <i data-lucide="accessibility" class="w-5 h-5 text-sky-400"></i>
+                Acessibilidade:
+            </span>
+            <div class="flex items-center gap-3">
+                <!-- Controle de Tamanho do Texto -->
+                <div class="flex items-center bg-stone-700 rounded-lg p-1">
+                    <span class="text-xs px-2 uppercase font-semibold text-stone-300">Letra:</span>
+                    <button onclick="changeFontSize('decrease')" class="px-3 py-1 bg-stone-600 hover:bg-stone-500 rounded font-bold text-lg transition-colors" title="Diminuir tamanho do texto">A-</button>
+                    <button onclick="changeFontSize('normal')" class="mx-1 px-3 py-1 bg-stone-600 hover:bg-stone-500 rounded font-bold text-base transition-colors" title="Tamanho padrão">A</button>
+                    <button onclick="changeFontSize('increase')" class="px-3 py-1 bg-stone-600 hover:bg-stone-500 rounded font-bold text-lg transition-colors" title="Aumentar tamanho do texto">A+</button>
+                </div>
+                
+                <!-- Ouvinte de Página (Síntese de Voz) -->
+                <button onclick="toggleSpeech()" id="audioBtn" class="flex items-center gap-1.5 bg-sky-700 hover:bg-sky-600 px-3 py-1.5 rounded-lg font-semibold text-sm transition-colors" title="Ouvir o texto desta aba">
+                    <i data-lucide="volume-2" class="w-4 h-4"></i>
+                    <span id="audioBtnText">Ouvir Guia</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BANNER INICIAL EM DESTAQUE COM BOTÃO DE AJUDA -->
+    <section class="bg-gradient-to-r from-sky-800 via-sky-700 to-emerald-700 text-white py-12 px-4 shadow-lg text-center md:text-left relative overflow-hidden">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <!-- Texto e Boas-Vindas -->
+            <div class="md:col-span-8 space-y-4">
+                <div class="inline-flex items-center gap-2 bg-white/20 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-yellow-300"></i>
+                    Espaço Seguro para a Terceira Idade
+                </div>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
+                    Internet Segura, Fácil e com Respeito!
+                </h1>
+                <p class="text-lg sm:text-xl text-sky-100 max-w-2xl leading-relaxed font-medium">
+                    Descubra como navegar sem medos, conhecer os seus direitos garantidos por lei e saber o que fazer em caso de dúvidas ou suspeitas.
+                </p>
+            </div>
+            <!-- Painel de Ajuda em Destaque -->
+            <div class="md:col-span-4 bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20 shadow-xl space-y-4 text-center">
+                <div class="bg-yellow-400 text-stone-950 p-2.5 rounded-full inline-flex">
+                    <i data-lucide="help-circle" class="w-8 h-8"></i>
+                </div>
+                <h2 class="text-xl font-bold">Precisa de Ajuda Agora?</h2>
+                <p class="text-sm text-sky-100">
+                    Está desconfiado de alguma mensagem, ligação ou boleto? Não decida nada sozinho!
+                </p>
+                <button onclick="openModal('ajuda-sos')" class="w-full bg-red-600 hover:bg-red-700 text-white font-extrabold py-3 px-6 rounded-2xl shadow-md text-lg transition-all flex items-center justify-center gap-3 active:scale-95">
+                    <i data-lucide="phone-call" class="w-5 h-5"></i>
+                    Botão de Ajuda Rápida
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU DE SEÇÕES (ABAS) -->
+    <nav class="max-w-5xl mx-auto w-full px-4 mt-8">
+        <h2 class="sr-only">Menu de Navegação</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- Aba: Dicas -->
+            <button onclick="switchTab('dicas')" id="tab-dicas" class="tab-btn flex items-center justify-center gap-2.5 py-4 px-4 rounded-2xl border-2 border-sky-700 bg-sky-50 text-sky-900 font-bold shadow-md hover:bg-sky-100 transition-all text-lg sm:text-xl">
+                <i data-lucide="book-open" class="w-5 h-5"></i>
+                Dicas Importantes
+            </button>
+            <!-- Aba: Identificar Golpes -->
+            <button onclick="switchTab('golpes')" id="tab-golpes" class="tab-btn flex items-center justify-center gap-2.5 py-4 px-4 rounded-2xl border-2 border-stone-300 bg-white text-stone-700 font-bold shadow-sm hover:bg-stone-50 transition-all text-lg sm:text-xl">
+                <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                Evitar Golpes
+            </button>
+            <!-- Aba: Direitos -->
+            <button onclick="switchTab('direitos')" id="tab-direitos" class="tab-btn flex items-center justify-center gap-2.5 py-4 px-4 rounded-2xl border-2 border-stone-300 bg-white text-stone-700 font-bold shadow-sm hover:bg-stone-50 transition-all text-lg sm:text-xl">
+                <i data-lucide="scale" class="w-5 h-5"></i>
+                Seus Direitos
+            </button>
+            <!-- Aba: Quiz/Desafio -->
+            <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn flex items-center justify-center gap-2.5 py-4 px-4 rounded-2xl border-2 border-stone-300 bg-white text-stone-700 font-bold shadow-sm hover:bg-stone-50 transition-all text-lg sm:text-xl">
+                <i data-lucide="trophy" class="w-5 h-5"></i>
+                Jogo Seguro
+            </button>
+        </div>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="flex-grow max-w-5xl mx-auto w-full px-4 py-8">
+
+        <!-- SEÇÃO 1: DICAS DE SEGURANÇA -->
+        <section id="sec-dicas" class="space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-md border border-stone-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-sky-800 flex items-center gap-3 mb-6">
+                    <span class="p-2 bg-sky-100 text-sky-800 rounded-xl"><i data-lucide="lightbulb" class="w-7 h-7"></i></span>
+                    Dicas Importantes de Segurança
+                </h2>
+                
+                <p class="text-stone-600 mb-8 leading-relaxed">
+                    Navegar na internet para ler notícias, ver fotos da família e conversar por mensagens é excelente. Para manter sua segurança sempre em primeiro lugar, guarde estas três regras de ouro:
+                </p>
+
+                <!-- Dica 1 -->
+                <div class="flex flex-col md:flex-row gap-6 p-5 rounded-2xl bg-stone-50 hover:bg-stone-100/70 border border-stone-200 transition-colors mb-6">
+                    <div class="text-sky-700 flex-shrink-0">
+                        <span class="flex items-center justify-center w-14 h-14 rounded-2xl bg-sky-100 text-2xl font-black">1</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-stone-800 mb-2">Crie Senhas com Coisas que Você Gosta</h3>
+                        <p class="text-stone-700 leading-relaxed mb-3">
+                            Evite usar datas de nascimento ou nomes de familiares próximos, pois são fáceis de adivinhar. Em vez disso, monte uma frase simples com uma comida favorita ou lugar que você ama.
+                        </p>
+                        <div class="bg-emerald-50 border-l-4 border-emerald-500 p-3 rounded-r-xl">
+                            <p class="text-sm font-semibold text-emerald-800">
+                                💡 <strong>Exemplo de Senha Segura:</strong> <span class="bg-white px-2 py-0.5 rounded border font-mono">BoloDeCenouraQuentinho2026!</span> (fácil para você lembrar, impossível para um computador adivinhar).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dica 2 -->
+                <div class="flex flex-col md:flex-row gap-6 p-5 rounded-2xl bg-stone-50 hover:bg-stone-100/70 border border-stone-200 transition-colors mb-6">
+                    <div class="text-sky-700 flex-shrink-0">
+                        <span class="flex items-center justify-center w-14 h-14 rounded-2xl bg-sky-100 text-2xl font-black">2</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-stone-800 mb-2">Pense Duas Vezes antes de Clicar</h3>
+                        <p class="text-stone-700 leading-relaxed mb-3">
+                            Mensagens com promoções exageradas, avisos urgentes de que sua conta bancária vai ser bloqueada ou sorteios que você não se inscreveu são perigosas. 
+                        </p>
+                        <div class="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r-xl">
+                            <p class="text-sm font-semibold text-amber-800">
+                                ⚠️ <strong>Atenção:</strong> Bancos e órgãos como a Receita Federal ou o INSS nunca mandam links por mensagem de texto (SMS) ou WhatsApp pedindo senhas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dica 3 -->
+                <div class="flex flex-col md:flex-row gap-6 p-5 rounded-2xl bg-stone-50 hover:bg-stone-100/70 border border-stone-200 transition-colors">
+                    <div class="text-sky-700 flex-shrink-0">
+                        <span class="flex items-center justify-center w-14 h-14 rounded-2xl bg-sky-100 text-2xl font-black">3</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-stone-800 mb-2">Proteja o seu Aplicativo de Mensagens</h3>
+                        <p class="text-stone-700 leading-relaxed mb-3">
+                            Ative a confirmação em duas etapas no seu WhatsApp. É uma chave extra que impede que outras pessoas consigam usar sua conta em outros aparelhos.
+                        </p>
+                        <button onclick="openModal('whatsapp-tut')" class="inline-flex items-center gap-2 text-sky-750 hover:text-sky-900 font-bold underline text-lg">
+                            Ver passo a passo de como ativar no WhatsApp
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2: IDENTIFICAR GOLPES -->
+        <section id="sec-golpes" class="hidden space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-md border border-stone-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-amber-800 flex items-center gap-3 mb-6">
+                    <span class="p-2 bg-amber-100 text-amber-800 rounded-xl"><i data-lucide="shield-alert" class="w-7 h-7"></i></span>
+                    Como Identificar Possíveis Golpes
+                </h2>
+                <p class="text-stone-600 mb-8 leading-relaxed">
+                    Os golpistas usam técnicas de convencimento, fingindo pressa, nervosismo ou oferecendo dinheiro fácil. Fique atento a estes sinais claros:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- SINAL 1 -->
+                    <div class="border-2 border-amber-200 rounded-2xl p-6 bg-amber-50/20 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="p-2 bg-red-100 text-red-600 rounded-lg"><i data-lucide="smartphone" class="w-5 h-5"></i></span>
+                                <h3 class="text-xl font-bold text-stone-800">Urgência Excessiva</h3>
+                            </div>
+                            <p class="text-stone-700 mb-4 text-base leading-relaxed">
+                                Se a mensagem ou ligação exigir que você faça algo <strong>"imediatamente"</strong> ou diz que <strong>"sua conta será cancelada em 10 minutos"</strong>, é quase certeza de que se trata de uma farsa para impedir você de pensar com calma.
+                            </p>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded-xl border border-red-200 mt-4">
+                            <p class="text-sm font-semibold text-red-800">
+                                🛑 <strong>O que fazer:</strong> Desligue ou pare de responder. Respire e consulte um parente ou amigo antes de qualquer clique.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SINAL 2 -->
+                    <div class="border-2 border-amber-200 rounded-2xl p-6 bg-amber-50/20 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="p-2 bg-red-100 text-red-600 rounded-lg"><i data-lucide="user-minus" class="w-5 h-5"></i></span>
+                                <h3 class="text-xl font-bold text-stone-800">Pedidos de Segredo</h3>
+                            </div>
+                            <p class="text-stone-700 mb-4 text-base leading-relaxed">
+                                Ligações ou mensagens que pedem para você <strong>não contar para ninguém</strong> sobre uma transação bancária, uma suposta investigação ou um bônus surpresa que você irá receber.
+                            </p>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded-xl border border-red-200 mt-4">
+                            <p class="text-sm font-semibold text-red-800">
+                                🛑 <strong>O que fazer:</strong> Quebre o segredo na hora! Ligue para as pessoas em quem você confia para ter uma segunda opinião.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SINAL 3 -->
+                    <div class="border-2 border-amber-200 rounded-2xl p-6 bg-amber-50/20 flex flex-col justify-between md:col-span-2">
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="p-2 bg-red-100 text-red-600 rounded-lg"><i data-lucide="credit-card" class="w-5 h-5"></i></span>
+                                <h3 class="text-xl font-bold text-stone-800">O Golpe do Falso Boleto ou Pix Agendado</h3>
+                            </div>
+                            <p class="text-stone-700 mb-4 text-base leading-relaxed">
+                                Você recebe uma cobrança com o nome de uma empresa de energia, telefone ou banco que você costuma usar, mas o favorecido que aparece na tela de pagamento é um nome de pessoa física ou de uma empresa desconhecida.
+                            </p>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded-xl border border-red-200 mt-4">
+                            <p class="text-sm font-semibold text-red-800">
+                                🛑 <strong>O que fazer:</strong> Sempre leia atentamente quem é o destinatário (favorecido) no aplicativo do seu banco antes de digitar a senha de confirmação.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 3: SEUS DIREITOS NA INTERNET (NOVA SEÇÃO!) -->
+        <section id="sec-direitos" class="hidden space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-md border border-stone-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-emerald-800 flex items-center gap-3 mb-6">
+                    <span class="p-2 bg-emerald-100 text-emerald-800 rounded-xl"><i data-lucide="scale" class="w-7 h-7"></i></span>
+                    Seus Direitos e Garantias Digitais
+                </h2>
+                <p class="text-stone-600 mb-8 leading-relaxed">
+                    A lei brasileira protege você no ambiente virtual, exatamente como faz nas lojas e agências físicas. Conheça as principais garantias que a legislação oferece:
+                </p>
+
+                <div class="space-y-6">
+                    <!-- Direito 1 -->
+                    <div class="p-6 rounded-2xl bg-emerald-50/40 border border-emerald-100">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="p-1.5 bg-emerald-100 text-emerald-800 rounded-lg"><i data-lucide="lock" class="w-5 h-5"></i></span>
+                            <h3 class="text-xl font-bold text-emerald-950">Proteção de Dados Pessoais (LGPD)</h3>
+                        </div>
+                        <p class="text-stone-700 leading-relaxed">
+                            Nenhuma empresa, aplicativo ou site pode guardar seu CPF, telefone, endereço ou foto sem a sua permissão clara. Você tem o direito de exigir que seus dados sejam apagados caso decida parar de usar um serviço.
+                        </p>
+                    </div>
+
+                    <!-- Direito 2 -->
+                    <div class="p-6 rounded-2xl bg-emerald-50/40 border border-emerald-100">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="p-1.5 bg-emerald-100 text-emerald-800 rounded-lg"><i data-lucide="undo-2" class="w-5 h-5"></i></span>
+                            <h3 class="text-xl font-bold text-emerald-950">Direito de Arrependimento (Até 7 Dias)</h3>
+                        </div>
+                        <p class="text-stone-700 leading-relaxed">
+                            Comprou algum produto ou assinou um serviço pela internet e se arrependeu? Pelo Código de Defesa do Consumidor, você tem o direito de desistir em até <strong>7 dias</strong> corridos, receber todo o seu dinheiro de volta e não precisa dar nenhuma justificativa!
+                        </p>
+                    </div>
+
+                    <!-- Direito 3 -->
+                    <div class="p-6 rounded-2xl bg-emerald-50/40 border border-emerald-100">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="p-1.5 bg-emerald-100 text-emerald-800 rounded-lg"><i data-lucide="heart-handshake" class="w-5 h-5"></i></span>
+                            <h3 class="text-xl font-bold text-emerald-950">Acessibilidade e Dignidade Digital</h3>
+                        </div>
+                        <p class="text-stone-700 leading-relaxed">
+                            O Estatuto da Pessoa Idosa e a Lei Brasileira de Inclusão garantem que os sites públicos e de bancos devem ser fáceis de ler, com opções de aumento de letra, áudio e linguagem simples para que todos consigam usar de forma independente.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 4: JOGO / QUIZ INTERATIVO -->
+        <section id="sec-quiz" class="hidden space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-md border border-stone-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-indigo-800 flex items-center gap-3 mb-4">
+                    <span class="p-2 bg-indigo-100 text-indigo-800 rounded-xl"><i data-lucide="gamepad-2" class="w-7 h-7"></i></span>
+                    Jogo do Certo ou Errado
+                </h2>
+                <p class="text-stone-600 mb-8 leading-relaxed">
+                    Vamos treinar o que aprendemos? Leia as situações abaixo e escolha a resposta correta para ganhar o seu selo de navegação segura!
+                </p>
+
+                <!-- Container do Quiz -->
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Cards de Perguntas inseridos via JavaScript -->
+                </div>
+
+                <!-- Painel de Resultados do Jogo -->
+                <div id="quiz-results" class="hidden bg-emerald-50 border-2 border-emerald-300 p-6 rounded-2xl text-center space-y-4">
+                    <div class="inline-flex p-3 bg-emerald-100 text-emerald-700 rounded-full">
+                        <i data-lucide="award" class="w-16 h-16"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-emerald-900">Parabéns por terminar o desafio!</h3>
+                    <p id="quiz-score-text" class="text-xl text-stone-700 font-medium"></p>
+                    <button onclick="restartQuiz()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-xl shadow transition-colors text-lg inline-flex items-center gap-2">
+                        <i data-lucide="rotate-ccw" class="w-5 h-5"></i> Começar de Novo
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BANNER DE AJUDA RÁPIDA (FIXO/FINAL) -->
+    <section class="bg-sky-50 border-t border-sky-100 py-10 px-4">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-2 text-center md:text-left">
+                <h2 class="text-2xl font-bold text-sky-900">Se sentir insegurança, não hesite em pedir ajuda!</h2>
+                <p class="text-stone-700 max-w-xl text-base sm:text-lg">
+                    Converse com as pessoas do seu convívio diário ou busque apoio nos canais oficiais de segurança do cidadão.
+                </p>
+            </div>
+            <div class="flex-shrink-0 flex gap-3 flex-wrap justify-center">
+                <button onclick="openModal('ajuda-sos')" class="inline-flex items-center gap-3 bg-red-650 bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 px-6 rounded-2xl shadow-md text-lg transition-all">
+                    <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                    Ver Contatos de Ajuda
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-stone-950 text-stone-400 py-12 px-4 text-center">
+        <div class="max-w-5xl mx-auto space-y-6">
+            <div class="flex items-center justify-center gap-3 text-white">
+                <i data-lucide="shield" class="w-8 h-8 text-sky-400"></i>
+                <span class="text-xl font-bold">Guia Prático Internet Segura</span>
+            </div>
+            <p class="text-sm max-w-md mx-auto">
+                Este aplicativo é um projeto educativo livre focado na segurança, privacidade e bem-estar digital de toda a família.
+            </p>
+            <div class="border-t border-stone-800 pt-6 text-xs text-stone-500">
+                © 2026 Manual da Internet Segura e Cidadã. Feito com cuidado e foco em acessibilidade.
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL - AJUDA RÁPIDA (SOS) -->
+    <div id="modal-ajuda-sos" class="hidden fixed inset-0 z-50 bg-stone-900/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <!-- Header -->
+            <div class="bg-red-650 bg-red-600 text-white p-6 flex justify-between items-center">
+                <h3 class="text-xl sm:text-2xl font-bold flex items-center gap-2">
+                    <i data-lucide="shield-alert" class="w-6 h-6"></i>
+                    Canais de Ajuda Rápida
+                </h3>
+                <button onclick="closeModal('ajuda-sos')" class="p-1 hover:bg-red-700 rounded-lg text-white transition-colors" title="Fechar janela">
+                    <i data-lucide="x" class="w-7 h-7"></i>
+                </button>
+            </div>
+            
+            <!-- Conteúdo -->
+            <div class="p-6 space-y-4">
+                <p class="text-stone-700 font-semibold text-lg leading-relaxed">
+                    Se você acha que caiu em um golpe ou tem dúvidas sobre uma ligação estranha, use estes canais confiáveis:
+                </p>
+
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3 p-3 bg-stone-50 rounded-xl border border-stone-200">
+                        <span class="p-2 bg-red-100 text-red-600 rounded-lg font-bold">190</span>
+                        <div>
+                            <p class="font-bold text-stone-800">Polícia Militar</p>
+                            <p class="text-sm text-stone-600">Para emergências ou fraudes graves acontecendo no momento.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 p-3 bg-stone-50 rounded-xl border border-stone-200">
+                        <span class="p-2 bg-sky-100 text-sky-600 rounded-lg font-bold">100</span>
+                        <div>
+                            <p class="font-bold text-stone-800">Disque Direitos Humanos</p>
+                            <p class="text-sm text-stone-600">Para relatar abusos financeiros, violência patrimonial ou golpes.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3 p-3 bg-stone-50 rounded-xl border border-stone-200">
+                        <span class="p-2 bg-emerald-100 text-emerald-600 rounded-lg font-bold"><i data-lucide="phone" class="w-5 h-5"></i></span>
+                        <div>
+                            <p class="font-bold text-stone-800">Seu Banco ou Familiar de Confiança</p>
+                            <p class="text-sm text-stone-600">Ligue para o telefone que fica atrás do seu cartão bancário para tirar dúvidas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl mt-4">
+                    <p class="text-sm text-amber-800">
+                        🔔 <strong>Lembrete Amigo:</strong> Anote estes números em um papel de rascunho perto do seu telefone para tê-los sempre à mão!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Botão Fechar -->
+            <div class="bg-stone-50 px-6 py-4 flex justify-end">
+                <button onclick="closeModal('ajuda-sos')" class="bg-stone-800 hover:bg-stone-700 text-white font-bold py-3 px-6 rounded-xl transition-colors text-lg">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL - TUTORIAL DE VERIFICAÇÃO EM DUAS ETAPAS -->
+    <div id="modal-whatsapp-tut" class="hidden fixed inset-0 z-50 bg-stone-900/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <!-- Header -->
+            <div class="bg-emerald-700 text-white p-6 flex justify-between items-center">
+                <h3 class="text-xl sm:text-2xl font-bold flex items-center gap-2">
+                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    Como Ativar no WhatsApp
+                </h3>
+                <button onclick="closeModal('whatsapp-tut')" class="p-1 hover:bg-emerald-600 rounded-lg text-white transition-colors" title="Fechar janela">
+                    <i data-lucide="x" class="w-7 h-7"></i>
+                </button>
+            </div>
+            
+            <!-- Conteúdo -->
+            <div class="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
+                <p class="text-stone-700 font-semibold mb-4 text-lg">Siga esses passos simples no seu WhatsApp:</p>
+                
+                <ol class="space-y-4 list-decimal list-inside text-stone-800">
+                    <li class="pl-2">Abra o seu aplicativo do <strong>WhatsApp</strong>.</li>
+                    <li class="pl-2">Toque em <strong>Configurações</strong> ou nos <strong>três pontinhos</strong> no canto de cima da tela.</li>
+                    <li class="pl-2">Escolha a opção <strong>Conta</strong>.</li>
+                    <li class="pl-2">Clique em <strong>Confirmação em duas etapas</strong>.</li>
+                    <li class="pl-2">Toque no botão de <strong>Ativar</strong> ou <strong>Configurar senha</strong>.</li>
+                    <li class="pl-2">Escolha uma senha de <strong>6 números</strong> bem fácil para você lembrar, mas que outras pessoas não saibam!</li>
+                </ol>
+
+                <div class="bg-sky-50 border border-sky-200 p-4 rounded-xl mt-4">
+                    <p class="text-sm text-sky-800">
+                        🔒 <strong>Pronto!</strong> De vez em quando, o WhatsApp pedirá esses números para certificar que o celular é seu de verdade. Isso evita roubo de perfil por estranhos!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Botão Fechar -->
+            <div class="bg-stone-50 px-6 py-4 flex justify-end">
+                <button onclick="closeModal('whatsapp-tut')" class="bg-stone-800 hover:bg-stone-700 text-white font-bold py-3 px-6 rounded-xl transition-colors text-lg">
+                    Entendi, obrigado!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS INTERATIVOS, ACESSIBILIDADE E QUIZ -->
+    <script>
+        // Inicializa ícones Lucide na tela
+        lucide.createIcons();
+
+        // 1. GERENCIADOR DE ACESSIBILIDADE - TAMANHO DO TEXTO
+        let currentSizeIndex = 0; 
+        const sizeClasses = ['font-normal-size', 'font-large-size', 'font-xlarge-size'];
+
+        function changeFontSize(action) {
+            const body = document.body;
+            // Limpa as classes de tamanho antigas
+            sizeClasses.forEach(cls => body.classList.remove(cls));
+
+            if (action === 'increase' && currentSizeIndex < 2) {
+                currentSizeIndex++;
+            } else if (action === 'decrease' && currentSizeIndex > 0) {
+                currentSizeIndex--;
+            } else if (action === 'normal') {
+                currentSizeIndex = 0;
+            }
+
+            // Atribui nova classe de tamanho
+            body.classList.add(sizeClasses[currentSizeIndex]);
+        }
+
+        // 2. CONTROLE DE JANELAS (MODAIS)
+        function openModal(id) {
+            document.getElementById(`modal-${id}`).classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeModal(id) {
+            document.getElementById(`modal-${id}`).classList.add('hidden');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        // 3. SELETOR DE ABAS (NAVEGAÇÃO)
+        function switchTab(tabId) {
+            // Esconde todas as abas
+            document.getElementById('sec-dicas').classList.add('hidden');
+            document.getElementById('sec-golpes').classList.add('hidden');
+            document.getElementById('sec-direitos').classList.add('hidden');
+            document.getElementById('sec-quiz').classList.add('hidden');
+
+            // Exibe a aba escolhida
+            document.getElementById(`sec-${tabId}`).classList.remove('hidden');
+
+            // Atualiza botões do menu principal
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('border-sky-700', 'bg-sky-50', 'text-sky-900');
+                btn.classList.add('border-stone-300', 'bg-white', 'text-stone-700');
+            });
+
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            activeBtn.classList.remove('border-stone-300', 'bg-white', 'text-stone-700');
+            activeBtn.classList.add('border-sky-700', 'bg-sky-50', 'text-sky-900');
+        }
+
+        // 4. LEITOR DE TEXTO POR ÁUDIO (SÍNTESE DE VOZ)
+        let isSpeaking = false;
+        let speechUtterance = null;
+
+        function toggleSpeech() {
+            const synth = window.speechSynthesis;
+            const audioBtnText = document.getElementById('audioBtnText');
+            const audioBtn = document.getElementById('audioBtn');
+
+            if (!synth) {
+                alert("Seu navegador não oferece suporte para ouvir áudios.");
+                return;
+            }
+
+            if (isSpeaking) {
+                synth.cancel();
+                isSpeaking = false;
+                audioBtnText.innerText = "Ouvir Guia";
+                audioBtn.classList.remove('bg-red-700', 'hover:bg-red-600');
+                audioBtn.classList.add('bg-sky-700', 'hover:bg-sky-600');
+            } else {
+                const textToRead = gatherReadableContent();
+                speechUtterance = new SpeechSynthesisUtterance(textToRead);
+                speechUtterance.lang = 'pt-BR';
+                speechUtterance.rate = 0.85; // Velocidade agradável e calma
+
+                speechUtterance.onend = () => {
+                    isSpeaking = false;
+                    audioBtnText.innerText = "Ouvir Guia";
+                    audioBtn.classList.remove('bg-red-700', 'hover:bg-red-600');
+                    audioBtn.classList.add('bg-sky-700', 'hover:bg-sky-600');
+                };
+
+                synth.speak(speechUtterance);
+                isSpeaking = true;
+                audioBtnText.innerText = "Parar Áudio";
+                audioBtn.classList.remove('bg-sky-700', 'hover:bg-sky-600');
+                audioBtn.classList.add('bg-red-700', 'hover:bg-red-600');
+            }
+        }
+
+        function gatherReadableContent() {
+            let container;
+            if (!document.getElementById('sec-dicas').classList.contains('hidden')) {
+                container = document.getElementById('sec-dicas');
+            } else if (!document.getElementById('sec-golpes').classList.contains('hidden')) {
+                container = document.getElementById('sec-golpes');
+            } else if (!document.getElementById('sec-direitos').classList.contains('hidden')) {
+                container = document.getElementById('sec-direitos');
+            } else {
+                container = document.getElementById('sec-quiz');
+            }
+            return container.innerText;
+        }
+
+        // Interrompe voz caso o navegador seja fechado ou recarregado
+        window.addEventListener('beforeunload', () => {
+            window.speechSynthesis?.cancel();
+        });
+
+        // 5. JOGO INTERATIVO (DESAFIO SEGURO)
+        const quizQuestions = [
+            {
+                id: 1,
+                title: "Desafio 1: Mensagem Importante do Banco",
+                question: "Você recebe um SMS dizendo que seu cartão foi clonado e que deve clicar em um link para cancelá-lo agora mesmo. O que você faz?",
+                options: [
+                    {
+                        text: "Ignoro e apago a mensagem. Se eu tiver dúvida, pego meu cartão de verdade e ligo no telefone que está escrito atrás dele.",
+                        correct: true,
+                        feedback: "Parabéns! Essa é a decisão correta. Bancos reais nunca enviam links para você realizar transações ou desbloqueios de cartão por mensagens de SMS."
+                    },
+                    {
+                        text: "Clico no link rapidamente para não correr o risco de ter a minha conta zerada.",
+                        correct: false,
+                        feedback: "Cuidado! Esse link costuma ser um golpe criado para capturar sua senha do banco. Nunca clique em links recebidos por mensagem de celular."
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Desafio 2: Compra que Deu Errado",
+                question: "Você comprou um liquidificador pela internet há 3 dias. Ao chegar em casa, você se arrepende da cor e não quer mais o aparelho. Qual é o seu direito?",
+                options: [
+                    {
+                        text: "Infelizmente não posso fazer nada, pois compras online não permitem devoluções.",
+                        correct: false,
+                        feedback: "Não desista! Pela lei, você possui garantias muito fortes em compras feitas pela internet."
+                    },
+                    {
+                        text: "Tenho até 7 dias para devolver o produto à loja por arrependimento, recebendo todo o dinheiro de volta, sem taxas.",
+                        correct: true,
+                        feedback: "Excelente! É o Direito de Arrependimento garantido pela nossa lei de defesa do consumidor. Você pode devolver compras online em até 7 dias."
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Desafio 3: Parentes em Apuros",
+                question: "Uma mensagem no WhatsApp com foto de um conhecido ou neto diz: 'Troquei de número, me faz um Pix urgente de R$ 300 para pagar um boleto'. O que você faz?",
+                options: [
+                    {
+                        text: "Ligo imediatamente por telefone normal (ou chamada de vídeo) para o número que eu já tinha salvo do meu neto para ter certeza.",
+                        correct: true,
+                        feedback: "Correto! Confirmar a identidade de quem fala por outro meio de contato de confiança salva você de perder dinheiro."
+                    },
+                    {
+                        text: "Faço a transferência rápida pelo celular, porque fico com vergonha de recusar a ajuda.",
+                        correct: false,
+                        feedback: "Atenção! Golpistas utilizam de fotos roubadas para se passar por parentes próximos e fazer pedidos de urgência. Sempre confirme primeiro."
+                    }
+                ]
+            }
+        ];
+
+        let quizUserAnswers = {};
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            quizQuestions.forEach(q => {
+                const card = document.createElement('div');
+                card.id = `q-card-${q.id}`;
+                card.className = "p-6 rounded-2xl border-2 border-stone-200 bg-stone-50 space-y-4 shadow-sm";
+
+                card.innerHTML = `
+                    <div class="flex items-center gap-3 text-indigo-850 text-indigo-900">
+                        <span class="p-2 bg-indigo-100 rounded-lg"><i data-lucide="help-circle" class="w-5 h-5"></i></span>
+                        <h3 class="text-xl font-bold">${q.title}</h3>
+                    </div>
+                    <p class="text-stone-800 font-semibold text-lg leading-relaxed">${q.question}</p>
+                    
+                    <div class="space-y-3 mt-4">
+                        ${q.options.map((opt, optIndex) => `
+                            <button onclick="selectQuizOption(${q.id}, ${optIndex})" 
+                                    id="btn-opt-${q.id}-${optIndex}"
+                                    class="w-full text-left p-4 rounded-xl border bg-white hover:bg-stone-100 transition-all font-semibold flex items-start gap-3 text-base sm:text-lg">
+                                <span class="w-6 h-6 rounded-full border-2 border-stone-400 flex items-center justify-center flex-shrink-0 mt-1" id="circle-opt-${q.id}-${optIndex}"></span>
+                                <span>${opt.text}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+
+                    <div id="feedback-${q.id}" class="hidden p-4 rounded-xl border font-semibold mt-4">
+                        <p id="feedback-text-${q.id}"></p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            const submitBtn = document.createElement('button');
+            submitBtn.id = 'quiz-submit-btn';
+            submitBtn.className = 'w-full bg-indigo-700 hover:bg-indigo-800 text-white font-bold py-4 px-8 rounded-2xl shadow-md transition-colors text-xl mt-6 flex items-center justify-center gap-2';
+            submitBtn.innerHTML = `<i data-lucide="check-circle" class="w-6 h-6"></i> Avaliar Minhas Respostas`;
+            submitBtn.onclick = checkQuizResults;
+            container.appendChild(submitBtn);
+
+            lucide.createIcons();
+        }
+
+        function selectQuizOption(qId, optIndex) {
+            // Se as respostas já foram enviadas, impede modificações
+            if (document.getElementById(`feedback-${qId}`).classList.contains('block')) return;
+
+            quizUserAnswers[qId] = optIndex;
+
+            const q = quizQuestions.find(it => it.id === qId);
+            for (let i = 0; i < q.options.length; i++) {
+                const btn = document.getElementById(`btn-opt-${qId}-${i}`);
+                const circle = document.getElementById(`circle-opt-${qId}-${i}`);
+                btn.className = "w-full text-left p-4 rounded-xl border bg-white hover:bg-stone-50 transition-all font-semibold flex items-start gap-3 text-base sm:text-lg border-stone-200 text-stone-800";
+                circle.className = "w-6 h-6 rounded-full border-2 border-stone-400 flex-shrink-0 mt-1";
+                circle.innerHTML = '';
+            }
+
+            const targetBtn = document.getElementById(`btn-opt-${qId}-${optIndex}`);
+            const targetCircle = document.getElementById(`circle-opt-${qId}-${optIndex}`);
+            targetBtn.className = "w-full text-left p-4 rounded-xl border-2 border-indigo-600 bg-indigo-50 transition-all font-semibold flex items-start gap-3 text-base sm:text-lg text-indigo-950 shadow-sm";
+            targetCircle.className = "w-6 h-6 rounded-full border-2 border-indigo-600 bg-indigo-600 flex items-center justify-center flex-shrink-0 mt-1";
+            targetCircle.innerHTML = '<span class="w-2.5 h-2.5 bg-white rounded-full"></span>';
+        }
+
+        function checkQuizResults() {
+            const unanswered = quizQuestions.filter(q => quizUserAnswers[q.id] === undefined);
+            if (unanswered.length > 0) {
+                alert("Por favor, responda a todos os 3 desafios antes de verificar!");
+                return;
+            }
+
+            let score = 0;
+
+            quizQuestions.forEach(q => {
+                const idx = quizUserAnswers[q.id];
+                const opt = q.options[idx];
+                const feedbackDiv = document.getElementById(`feedback-${q.id}`);
+                const feedbackText = document.getElementById(`feedback-text-${q.id}`);
+                const card = document.getElementById(`q-card-${q.id}`);
+
+                feedbackDiv.classList.remove('hidden');
+                feedbackDiv.classList.add('block');
+
+                if (opt.correct) {
+                    score++;
+                    feedbackDiv.className = "p-4 rounded-xl border bg-emerald-50 border-emerald-300 text-emerald-900 mt-4";
+                    feedbackText.innerHTML = `🎉 <strong>Muito bem!</strong> ${opt.feedback}`;
+                    card.className = "p-6 rounded-2xl border-2 border-emerald-500 bg-emerald-50/10 space-y-4 shadow-md";
+                } else {
+                    feedbackDiv.className = "p-4 rounded-xl border bg-red-50 border-red-300 text-red-900 mt-4";
+                    feedbackText.innerHTML = `⚠️ <strong>Pense melhor sobre isso.</strong> ${opt.feedback}`;
+                    card.className = "p-6 rounded-2xl border-2 border-red-200 bg-red-50/10 space-y-4 shadow-sm";
+                }
+            });
+
+            document.getElementById('quiz-submit-btn').classList.add('hidden');
+            const resultText = document.getElementById('quiz-score-text');
+
+            if (score === 3) {
+                resultText.innerHTML = `Você gabaritou o desafio! <strong>Acertou 3 de 3 situações!</strong> Você está navegando de forma incrivelmente protegida e consciente dos seus direitos! 🏆🛡️`;
+            } else {
+                resultText.innerHTML = `Você concluiu o quiz! <strong>Acertou ${score} de 3 situações</strong>. Leia as dicas e tente novamente para conquistar a pontuação perfeita! 🌟`;
+            }
+
+            document.getElementById('quiz-results').classList.remove('hidden');
+            document.getElementById('quiz-results').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function restartQuiz() {
+            quizUserAnswers = {};
+            document.getElementById('quiz-results').classList.add('hidden');
+            renderQuiz();
+        }
+
+        // Inicializar renderização do Quiz na carga inicial da página
+        renderQuiz();
+    </script>
+</body>
+</html>
