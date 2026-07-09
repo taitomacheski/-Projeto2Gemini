@@ -1,0 +1,107 @@
+/* --- ENGENHARIA DE ESTADOS EM PURE CSS --- */
+
+/* 1. Controle de tamanho de fontes via CSS */
+#font-padrao:checked ~ .app-content {
+    --font-multiplier: 1rem;
+}
+#font-grande:checked ~ .app-content {
+    --font-multiplier: 1.2rem;
+}
+#font-gigante:checked ~ .app-content {
+    --font-multiplier: 1.4rem;
+}
+
+/* Aplicando o multiplicador de fonte nos textos principais */
+.app-content p, 
+.app-content li, 
+.app-content summary, 
+.app-content label {
+    font-size: calc(1.1rem * var(--font-multiplier) / 1rem);
+    line-height: 1.6;
+}
+.app-content h1 {
+    font-size: calc(2.25rem * var(--font-multiplier) / 1rem);
+}
+.app-content h2 {
+    font-size: calc(1.75rem * var(--font-multiplier) / 1rem);
+}
+.app-content h3 {
+    font-size: calc(1.5rem * var(--font-multiplier) / 1rem);
+}
+
+/* 2. Modo de Alto Contraste via CSS */
+#alto-contraste:checked ~ .app-content {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+#alto-contraste:checked ~ .app-content header {
+    background-color: #111111 !important;
+    border-bottom: 3px solid #ffff00 !important;
+}
+#alto-contraste:checked ~ .app-content .bg-white {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+}
+#alto-contraste:checked ~ .app-content .bg-sky-50,
+#alto-contraste:checked ~ .app-content .bg-blue-50,
+#alto-contraste:checked ~ .app-content .bg-indigo-50,
+#alto-contraste:checked ~ .app-content .bg-emerald-50,
+#alto-contraste:checked ~ .app-content .bg-amber-50,
+#alto-contraste:checked ~ .app-content .bg-rose-50 {
+    background-color: #000000 !important;
+    border: 2px dashed #ffffff !important;
+}
+#alto-contraste:checked ~ .app-content .text-blue-900,
+#alto-contraste:checked ~ .app-content .text-indigo-950,
+#alto-contraste:checked ~ .app-content .text-indigo-900,
+#alto-contraste:checked ~ .app-content .text-slate-900,
+#alto-contraste:checked ~ .app-content .text-slate-800,
+#alto-contraste:checked ~ .app-content .text-emerald-800,
+#alto-contraste:checked ~ .app-content .text-amber-900 {
+    color: #ffffff !important;
+}
+#alto-contraste:checked ~ .app-content .text-gray-500,
+#alto-contraste:checked ~ .app-content .text-gray-600,
+#alto-contraste:checked ~ .app-content .text-gray-700 {
+    color: #e5e7eb !important;
+}
+#alto-contraste:checked ~ .app-content .btn-acessivel {
+    background-color: #000000 !important;
+    color: #ffff00 !important;
+    border: 2px solid #ffff00 !important;
+}
+#alto-contraste:checked ~ .app-content .btn-acessivel:hover {
+    background-color: #ffff00 !important;
+    color: #000000 !important;
+}
+
+/* 3. Estilização do componente de Acordeão Acessível (<details>) */
+details summary::-webkit-details-marker {
+    display: none;
+}
+details[open] summary i {
+    transform: rotate(180deg);
+}
+
+/* 4. Estilo de Foco reforçado para facilitar navegação por teclado */
+*:focus {
+    outline: 4px solid #f59e0b !important;
+    outline-offset: 2px;
+}
+
+/* Rolagem suave de página */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 5. Lógica para exibir as respostas do Quiz */
+.resposta-explicacao { 
+    display: none; 
+}
+#radio-golpe:checked ~ #explicacao-golpe { 
+    display: block; 
+}
+#radio-seguro:checked ~ #explicacao-seguro { 
+    display: block; 
+}
