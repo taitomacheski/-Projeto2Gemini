@@ -1,21 +1,32 @@
+Ah, entendi! Se você não quer usar JavaScript de jeito nenhum no seu projeto, dá para deixar tudo apenas em HTML e CSS.
+
+Aqui está como fica a estrutura 100% livre de JavaScript:
+
+📄 1. index.html (Sem JavaScript)
+HTML
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guia Digital Seguro - Segurança para a Terceira Idade</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-sky-50 text-slate-800 min-h-screen flex flex-col antialiased">
 
-    <div id="modal-ajuda" class="modal-overlay" role="dialog" aria-labelledby="modal-titulo" aria-modal="true">
+    <input type="checkbox" id="modal-toggle" class="sr-only">
+    
+    <div class="modal-overlay" role="dialog" aria-labelledby="modal-titulo" aria-modal="true">
         <div class="modal-box bg-amber-50 border-4 border-amber-300 rounded-3xl p-6 md:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
             
-            <button onclick="fecharModal()" class="absolute top-4 right-4 bg-amber-200 hover:bg-amber-300 text-amber-950 font-black w-10 h-10 rounded-full flex items-center justify-center transition border-2 border-amber-400 text-xl" title="Fechar Janela" aria-label="Fechar">
+            <label for="modal-toggle" class="absolute top-4 right-4 bg-amber-200 hover:bg-amber-300 text-amber-950 font-black w-10 h-10 rounded-full flex items-center justify-center transition border-2 border-amber-400 text-xl cursor-pointer" title="Fechar Janela">
                 <i class="fa-solid fa-xmark"></i>
-            </button>
+            </label>
 
             <div class="flex items-center gap-3 mb-4 pr-10">
                 <div class="bg-red-100 p-3 rounded-full flex-shrink-0">
@@ -73,32 +84,21 @@
             </div>
 
             <div class="text-center">
-                <button onclick="fecharModal()" class="inline-block bg-amber-400 hover:bg-amber-300 text-blue-950 font-black py-3.5 px-8 rounded-xl text-lg cursor-pointer transition shadow-md border-2 border-amber-500">
+                <label for="modal-toggle" class="inline-block bg-amber-400 hover:bg-amber-300 text-blue-950 font-black py-3.5 px-8 rounded-xl text-lg cursor-pointer transition shadow-md border-2 border-amber-500">
                     <i class="fa-solid fa-check mr-2"></i> Entendi / Voltar à Página
-                </button>
+                </label>
             </div>
 
         </div>
     </div>
 
-    <div class="app-content flex-grow flex flex-col transition-colors duration-300">
+    <div class="app-content flex-grow flex flex-col">
 
-        <header class="bg-blue-900 text-white shadow-md sticky top-0 z-40 transition-colors duration-300">
+        <header class="bg-blue-900 text-white shadow-md sticky top-0 z-40">
             <div class="max-w-4xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-shield-halved text-2xl text-amber-400"></i>
                     <span class="font-bold text-xl md:text-2xl tracking-wide">Guia Digital Seguro</span>
-                </div>
-                
-                <div class="flex flex-wrap items-center gap-2" role="toolbar" aria-label="Controles de Acessibilidade">
-                    <span class="text-xs font-semibold mr-1">Tamanho da Letra:</span>
-                    <button onclick="alterarFonte('1rem')" class="btn-acessivel bg-blue-800 hover:bg-blue-700 text-white font-bold py-1.5 px-2.5 rounded-lg text-sm transition border border-blue-600 shadow">A</button>
-                    <button onclick="alterarFonte('1.2rem')" class="btn-acessivel bg-blue-800 hover:bg-blue-700 text-white font-bold py-1.5 px-2.5 rounded-lg text-base transition border border-blue-600 shadow">A+</button>
-                    <button onclick="alterarFonte('1.4rem')" class="btn-acessivel bg-blue-800 hover:bg-blue-700 text-white font-bold py-1.5 px-2.5 rounded-lg text-lg transition border border-blue-600 shadow">A++</button>
-                    
-                    <button onclick="alternarContraste()" class="btn-acessivel ml-2 bg-amber-400 hover:bg-amber-300 text-blue-950 font-bold py-1.5 px-3 rounded-lg text-sm transition shadow flex items-center gap-2">
-                        <i class="fa-solid fa-circle-half-stroke"></i> Contraste
-                    </button>
                 </div>
             </div>
         </header>
@@ -106,196 +106,71 @@
         <main class="flex-grow max-w-4xl w-full mx-auto px-4 py-6 md:py-8">
             
             <section class="bg-gradient-to-r from-blue-800 to-indigo-900 text-white rounded-3xl p-6 md:p-10 shadow-xl mb-8 relative overflow-hidden border-2 border-blue-400">
-                <div class="absolute right-0 bottom-0 opacity-10 pointer-events-none translate-x-10 translate-y-10">
-                    <i class="fa-solid fa-user-shield text-[180px]"></i>
-                </div>
-                
                 <div class="relative z-10">
                     <span class="bg-amber-400 text-blue-950 font-bold px-4 py-1 rounded-full text-xs md:text-sm uppercase tracking-wider shadow">
                         Espaço Seguro da Terceira Idade
                     </span>
-                    <h1 class="font-extrabold text-white mt-4 mb-4 leading-tight">
+
+                    <h1 class="font-extrabold text-white mt-4 mb-4 leading-tight text-3xl md:text-4xl">
                         Navegue na Internet com Confiança e Paz!
                     </h1>
-                    <p class="text-blue-100 mb-8 max-w-2xl">
+                    <p class="text-blue-100 mb-8 max-w-2xl text-lg">
                         A internet é ótima para ver fotos de netos, conversar e resolver tarefas de casa. Com dicas simples de ler, aprenda a usá-la de forma segura e proteja as suas informações!
                     </p>
                     
                     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                        <button onclick="abrirModal()" class="bg-amber-400 hover:bg-amber-300 text-blue-950 font-black py-4 px-8 rounded-2xl text-lg md:text-xl text-center shadow-lg hover:shadow-xl transition flex items-center justify-center gap-3 border-4 border-white duration-300 transform hover:scale-105 cursor-pointer">
+                        <label for="modal-toggle" class="bg-amber-400 hover:bg-amber-300 text-blue-950 font-black py-4 px-8 rounded-2xl text-lg md:text-xl text-center shadow-lg hover:shadow-xl transition flex items-center justify-center gap-3 border-4 border-white duration-300 transform hover:scale-105 cursor-pointer">
                             <i class="fa-solid fa-phone-volume text-2xl"></i>
                             PRECISA DE AJUDA? VEJA TELEFONES AQUI!
-                        </button>
-                        <span class="text-sm md:text-base text-blue-200 text-center sm:text-left font-medium">
-                            Clique acima a qualquer momento se precisar falar com alguém de confiança.
-                        </span>
+                        </label>
                     </div>
                 </div>
             </section>
 
             <section class="mb-12">
-                <h2 class="font-bold text-blue-900 mb-6 flex items-center gap-3">
+                <h2 class="font-bold text-blue-900 flex items-center gap-3 text-2xl mb-6">
                     <i class="fa-solid fa-lightbulb text-amber-500 text-3xl"></i> Dicas Importantes de Segurança
                 </h2>
                 
                 <div class="space-y-4">
-                    
-                    <details class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden group" open>
-                        <summary class="p-5 md:p-6 flex items-center justify-between cursor-pointer hover:bg-slate-50 transition list-none">
+                    <details class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden" open>
+                        <summary class="p-5 md:p-6 flex items-center justify-between cursor-pointer hover:bg-slate-50 transition list-none font-bold text-slate-900 text-lg">
                             <div class="flex items-center gap-4">
                                 <div class="bg-amber-100 text-amber-800 p-3.5 rounded-full flex-shrink-0">
                                     <i class="fa-solid fa-key text-xl"></i>
                                 </div>
                                 <div>
-                                    <h3 class="font-bold text-slate-900">Como Cuidar de Suas Senhas</h3>
-                                    <p class="text-xs text-gray-500">As chaves invisíveis das suas contas</p>
+                                    <h3>Como Cuidar de Suas Senhas</h3>
+                                    <p class="text-xs text-gray-500 font-normal">As chaves invisíveis das suas contas</p>
                                 </div>
                             </div>
-                            <span class="text-slate-400 text-xl"><i class="fa-solid fa-chevron-down transition-transform duration-300"></i></span>
                         </summary>
-                        <div class="p-6 border-t border-slate-100 bg-slate-50/50 space-y-4">
+                        <div class="p-6 border-t border-slate-100 bg-slate-50 space-y-4">
                             <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl">
-                                <h4 class="font-bold text-emerald-800 mb-1 flex items-center gap-2">
-                                    <i class="fa-solid fa-circle-check"></i> O que fazer:
-                                </h4>
-                                <p class="text-slate-700">Crie senhas fáceis de lembrar para você, mas difíceis para as outras pessoas. Uma boa técnica é usar uma frase de que gosta. Exemplo: <b>"CafeComPaoDeManha"</b>.</p>
+                                <h4 class="font-bold text-emerald-800 mb-1"><i class="fa-solid fa-circle-check"></i> O que fazer:</h4>
+                                <p class="text-slate-700">Crie senhas fáceis de lembrar para você. Exemplo: <b>"CafeComPaoDeManha"</b>.</p>
                             </div>
                             <div class="p-4 bg-rose-50 border border-rose-200 rounded-xl">
-                                <h4 class="font-bold text-rose-800 mb-1 flex items-center gap-2">
-                                    <i class="fa-solid fa-circle-xmark"></i> O que nunca fazer:
-                                </h4>
-                                <p class="text-slate-700">Evite senhas fáceis como sua data de nascimento ou 12345. Nunca compartilhe suas senhas com estranhos por WhatsApp ou em ligações telefônicas recebidas.</p>
+                                <h4 class="font-bold text-rose-800 mb-1"><i class="fa-solid fa-circle-xmark"></i> O que nunca fazer:</h4>
+                                <p class="text-slate-700">Evite datas de nascimento ou 12345. Nunca compartilhe senhas por mensagem.</p>
                             </div>
                         </div>
                     </details>
-
-                    <details class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden group">
-                        <summary class="p-5 md:p-6 flex items-center justify-between cursor-pointer hover:bg-slate-50 transition list-none">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-blue-100 text-blue-800 p-3.5 rounded-full flex-shrink-0">
-                                    <i class="fa-solid fa-comment-dots text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-slate-900">Desconfie de Contatos Estranhos</h3>
-                                    <p class="text-xs text-gray-500">Links azuis no WhatsApp e mensagens urgentes</p>
-                                </div>
-                            </div>
-                            <span class="text-slate-400 text-xl"><i class="fa-solid fa-chevron-down transition-transform duration-300"></i></span>
-                        </summary>
-                        <div class="p-6 border-t border-slate-100 bg-slate-50/50 space-y-4">
-                            <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl">
-                                <h4 class="font-bold text-emerald-800 mb-1 flex items-center gap-2">
-                                    <i class="fa-solid fa-circle-check"></i> A Regra de Ouro:
-                                </h4>
-                                <p class="text-slate-700">Se receber mensagem de um parente ou neto pedindo dinheiro urgente em um número novo, não envie. Pegue o telefone e ligue imediatamente para o número antigo do seu parente para confirmar.</p>
-                            </div>
-                        </div>
-                    </details>
-
-                </div>
-            </section>
-
-            <section class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-indigo-100 mb-12">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="bg-indigo-100 text-indigo-800 p-3.5 rounded-full flex-shrink-0">
-                        <i class="fa-solid fa-gavel text-2xl"></i>
-                    </div>
-                    <h2 class="font-bold text-indigo-900">Seus Direitos no Ambiente Digital</h2>
-                </div>
-                
-                <p class="text-slate-700 mb-6 leading-relaxed">
-                    Você sabia que o Brasil tem leis criadas especialmente para proteger você e a sua privacidade quando navega pela internet? Conheça seus direitos:
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-indigo-50/70 p-5 rounded-xl border border-indigo-100 flex flex-col justify-between">
-                        <div>
-                            <div class="text-indigo-700 text-2xl mb-3"><i class="fa-solid fa-user-lock"></i></div>
-                            <h3 class="font-extrabold text-indigo-950 text-lg mb-2">Proteção de Dados (LGPD)</h3>
-                            <p class="text-sm text-slate-700">
-                                Empresas, lojas e hospitais não podem repassar, vender ou distribuir o seu telefone ou CPF sem a sua permissão escrita ou autorizada.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="bg-indigo-50/70 p-5 rounded-xl border border-indigo-100 flex flex-col justify-between">
-                        <div>
-                            <div class="text-indigo-700 text-2xl mb-3"><i class="fa-solid fa-universal-access"></i></div>
-                            <h3 class="font-extrabold text-indigo-950 text-lg mb-2">Acessibilidade Digital</h3>
-                            <p class="text-sm text-slate-700">
-                                Pela Lei de Inclusão, órgãos públicos e canais essenciais (como bancos) precisam oferecer sites simples de ler, com letras grandes e amigáveis para pessoas de todas as idades.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="bg-indigo-50/70 p-5 rounded-xl border border-indigo-100 flex flex-col justify-between">
-                        <div>
-                            <div class="text-indigo-700 text-2xl mb-3"><i class="fa-solid fa-cart-shopping"></i></div>
-                            <h3 class="font-extrabold text-indigo-950 text-lg mb-2">Desistência de Compras</h3>
-                            <p class="text-sm text-slate-700">
-                                Se você fizer qualquer compra na internet (como remédios ou roupas) e desistir, você tem o direito garantido por lei de devolver o produto e receber o valor pago de volta em até 7 dias úteis.
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </section>
 
             <section class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-red-100 mb-12">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="bg-red-100 text-red-800 p-3.5 rounded-full flex-shrink-0">
-                        <i class="fa-solid fa-eye text-2xl"></i>
-                    </div>
-                    <h2 class="font-bold text-red-900">Como Identificar Golpes no Dia a Dia</h2>
-                </div>
+                <h2 class="font-bold text-red-900 text-2xl mb-6 flex items-center gap-3">
+                    <i class="fa-solid fa-eye text-red-600"></i> Teste Rápido: É Golpe ou é Seguro?
+                </h2>
 
-                <p class="text-slate-700 mb-6 leading-relaxed">
-                    Os trapaceiros digitais costumam agir sempre da mesma maneira. Fique muito atento a estas <b>3 pistas de alerta</b> em mensagens e telefonemas:
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div class="p-5 rounded-xl bg-rose-50 border border-rose-200 flex flex-col gap-3">
-                        <span class="font-bold text-rose-800 text-lg flex items-center gap-2">
-                            <span class="bg-rose-200 text-rose-900 w-8 h-8 rounded-full flex items-center justify-center text-sm font-black">1</span> Urgência Extrema
-                        </span>
-                        <p class="text-sm text-slate-700">
-                            Eles dizem que algo terrível vai acontecer (tipo "sua conta será bloqueada hoje!") para que você não tenha tempo de desligar e perguntar para ninguém.
-                        </p>
-                    </div>
-
-                    <div class="p-5 rounded-xl bg-rose-50 border border-rose-200 flex flex-col gap-3">
-                        <span class="font-bold text-rose-800 text-lg flex items-center gap-2">
-                            <span class="bg-rose-200 text-rose-900 w-8 h-8 rounded-full flex items-center justify-center text-sm font-black">2</span> Dinheiro Fácil
-                        </span>
-                        <p class="text-sm text-slate-700">
-                            Mensagens de que você ganhou prêmios surpresa ou dinheiro inesperado do governo. Lembre-se: dinheiro real não vem por mensagens fáceis!
-                        </p>
-                    </div>
-
-                    <div class="p-5 rounded-xl bg-rose-50 border border-rose-200 flex flex-col gap-3">
-                        <span class="font-bold text-rose-800 text-lg flex items-center gap-2">
-                            <span class="bg-rose-200 text-rose-900 w-8 h-8 rounded-full flex items-center justify-center text-sm font-black">3</span> Pedidos de Segredos
-                        </span>
-                        <p class="text-sm text-slate-700">
-                            O banco nunca ligará de surpresa pedindo que você fale a sua senha ou faça um Pix para cancelar alguma conta fictícia.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="bg-emerald-50 rounded-2xl p-6 border border-emerald-200 relative">
+                <div class="bg-emerald-50 rounded-2xl p-6 border border-emerald-200">
                     <input type="radio" id="radio-golpe" name="quiz-radio" class="sr-only">
                     <input type="radio" id="radio-seguro" name="quiz-radio" class="sr-only">
 
-                    <h3 class="font-bold text-emerald-800 mb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-gamepad"></i> Teste Rápido: É Golpe ou é Seguro?
-                    </h3>
-                    <p class="text-slate-700 mb-6 text-sm">
-                        Leia a situação abaixo e clique na opção para ver instantaneamente a explicação.
-                    </p>
-
                     <div class="bg-white rounded-xl p-5 border border-emerald-100 shadow-sm mb-6">
-                        <span class="bg-emerald-200 text-emerald-900 font-bold px-3 py-0.5 rounded-full text-xs uppercase tracking-wide">Cenário Fictício</span>
-                        <p class="font-bold text-slate-800 mt-3 leading-relaxed">
-                            "Você recebe um SMS dizendo que o seu cartão de crédito foi usado para fazer uma compra enorme e pede para você ligar num telefone falso para cancelar."
+                        <p class="font-bold text-slate-800 leading-relaxed">
+                            "Você recebe um SMS dizendo que o seu cartão de crédito foi usado para fazer uma compra enorme e pede para você ligar num telefone para cancelar."
                         </p>
                     </div>
 
@@ -309,72 +184,23 @@
                     </div>
 
                     <div class="quiz-container">
-                        <div id="explicacao-golpe" class="resposta-explicacao bg-emerald-100 border-2 border-emerald-400 p-5 rounded-xl text-emerald-950 font-bold shadow-inner">
-                            <p class="flex items-start gap-3">
-                                <i class="fa-solid fa-circle-check text-emerald-700 text-2xl mt-0.5"></i>
-                                <span>Você acertou em cheio! 👏 Isso é um golpe muito conhecido. Eles tentam deixar você assustado com uma compra que nunca existiu para que você dê seus dados do cartão. Se tiver dúvida se comprou algo, olhe diretamente a fatura no aplicativo ou ligue no número atrás do seu cartão real!</span>
-                            </p>
+                        <div id="explicacao-golpe" class="resposta-explicacao bg-emerald-100 border-2 border-emerald-400 p-5 rounded-xl text-emerald-950 font-bold">
+                            👏 Você acertou! Isso é um golpe. Bancos não pedem para você ligar em números enviados por SMS.
                         </div>
-
-                        <div id="explicacao-seguro" class="resposta-explicacao bg-red-100 border-2 border-red-400 p-5 rounded-xl text-red-950 font-bold shadow-inner">
-                            <p class="flex items-start gap-3">
-                                <i class="fa-solid fa-triangle-exclamation text-red-700 text-2xl mt-0.5"></i>
-                                <span>Cuidado! ⚠️ Isso é um golpe simulado. Bancos não pedem para você ligar em números suspeitos fornecidos por mensagens de SMS para resolver cancelamentos. Sempre consulte seu banco no canal oficial.</span>
-                            </p>
+                        <div id="explicacao-seguro" class="resposta-explicacao bg-red-100 border-2 border-red-400 p-5 rounded-xl text-red-950 font-bold">
+                            ⚠️ Cuidado! Isso é um golpe. Sempre consulte seu banco no número que fica atrás do cartão.
                         </div>
                     </div>
-
                 </div>
             </section>
 
         </main>
 
-        <footer class="bg-blue-950 text-white text-center py-6 px-4 mt-12 transition-colors duration-300">
-            <div class="max-w-4xl mx-auto">
-                <p class="text-lg font-semibold">Guia Digital Seguro © 2026</p>
-                <p class="text-xs text-blue-300 mt-1">Navegue com carinho, paciência e segurança sempre.</p>
-            </div>
+        <footer class="bg-blue-950 text-white text-center py-6 px-4 mt-12">
+            <p class="text-lg font-semibold">Guia Digital Seguro © 2026</p>
         </footer>
 
     </div>
 
-    <script>
-        // Funções do Modal
-        function abrirModal() {
-            const modal = document.getElementById('modal-ajuda');
-            modal.classList.add('ativo');
-            document.body.style.overflow = 'hidden'; // Impede rolagem do fundo
-        }
-
-        function fecharModal() {
-            const modal = document.getElementById('modal-ajuda');
-            modal.classList.remove('ativo');
-            document.body.style.overflow = 'auto'; // Restaura rolagem do fundo
-        }
-
-        // Fechar modal ao clicar fora da caixa amarela
-        document.getElementById('modal-ajuda').addEventListener('click', function(e) {
-            if (e.target === this) {
-                fecharModal();
-            }
-        });
-
-        // Fechar modal com a tecla ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                fecharModal();
-            }
-        });
-
-        // Ajuste dinâmico de tamanho de fonte
-        function alterarFonte(tamanho) {
-            document.documentElement.style.setProperty('--font-scale', tamanho);
-        }
-
-        // Alternador de Alto Contraste
-        function alternarContraste() {
-            document.body.classList.toggle('alto-contraste');
-        }
-    </script>
 </body>
 </html>

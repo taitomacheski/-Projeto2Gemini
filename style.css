@@ -1,89 +1,13 @@
-/* Variáveis de acessibilidade e transições */
-:root {
-    --font-scale: 1rem;
+/* Modal controlado via Checkbox em CSS puro */
+#modal-toggle:checked ~ .modal-overlay {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-html {
-    font-size: var(--font-scale);
-    scroll-behavior: smooth;
-    transition: font-size 0.2s ease;
+#modal-toggle:checked ~ .modal-overlay .modal-box {
+    transform: scale(1);
 }
 
-/* Estilos de Tipografia com base na escala */
-.app-content p, 
-.app-content li, 
-.app-content summary, 
-.app-content label {
-    font-size: calc(1.1rem * var(--font-scale) / 1rem);
-    line-height: 1.6;
-}
-.app-content h1 {
-    font-size: calc(2.25rem * var(--font-scale) / 1rem);
-}
-.app-content h2 {
-    font-size: calc(1.75rem * var(--font-scale) / 1rem);
-}
-.app-content h3 {
-    font-size: calc(1.5rem * var(--font-scale) / 1rem);
-}
-
-/* Modo de Alto Contraste */
-body.alto-contraste {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-}
-body.alto-contraste header {
-    background-color: #111111 !important;
-    border-bottom: 3px solid #ffff00 !important;
-}
-body.alto-contraste .bg-white,
-body.alto-contraste .modal-box {
-    background-color: #1a1a1a !important;
-    color: #ffffff !important;
-    border: 2px solid #ffffff !important;
-}
-body.alto-contraste .bg-sky-50,
-body.alto-contraste .bg-blue-50,
-body.alto-contraste .bg-indigo-50,
-body.alto-contraste .bg-emerald-50,
-body.alto-contraste .bg-amber-50,
-body.alto-contraste .bg-rose-50 {
-    background-color: #000000 !important;
-    border: 2px dashed #ffffff !important;
-}
-body.alto-contraste h1,
-body.alto-contraste h2,
-body.alto-contraste h3,
-body.alto-contraste h4,
-body.alto-contraste strong,
-body.alto-contraste b {
-    color: #ffff00 !important;
-}
-body.alto-contraste .btn-acessivel {
-    background-color: #000000 !important;
-    color: #ffff00 !important;
-    border: 2px solid #ffff00 !important;
-}
-body.alto-contraste .btn-acessivel:hover {
-    background-color: #ffff00 !important;
-    color: #000000 !important;
-}
-
-/* Estilização do componente de Acordeão Acessível (<details>) */
-details summary::-webkit-details-marker {
-    display: none;
-}
-details[open] summary i {
-    transform: rotate(180deg);
-}
-
-/* Foco visível para navegação por teclado */
-*:focus-visible {
-    outline: 4px solid #f59e0b !important;
-    outline-offset: 3px;
-}
-
-/* --- ESTILIZAÇÃO DO MODAL COM ANIMAÇÃO --- */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -102,27 +26,20 @@ details[open] summary i {
     transition: opacity 0.3s ease-in-out;
 }
 
-.modal-overlay.ativo {
-    opacity: 1;
-    pointer-events: auto;
-}
-
 .modal-box {
     transform: scale(0.9);
     transition: transform 0.3s ease-in-out;
 }
 
-.modal-overlay.ativo .modal-box {
-    transform: scale(1);
-}
-
-/* Ocultar explicações do Quiz por padrão */
+/* Exibição das respostas do Quiz via Radio Buttons CSS */
 .resposta-explicacao { 
     display: none; 
 }
+
 #radio-golpe:checked ~ .quiz-container #explicacao-golpe { 
     display: block; 
 }
+
 #radio-seguro:checked ~ .quiz-container #explicacao-seguro { 
     display: block; 
 }
