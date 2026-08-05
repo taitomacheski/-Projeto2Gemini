@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +10,80 @@
 </head>
 <body class="bg-sky-50 text-slate-800 min-h-screen flex flex-col antialiased">
 
-    <input type="radio" id="font-padrao" name="font-selector" class="sr-only" checked>
-    <input type="radio" id="font-grande" name="font-selector" class="sr-only">
-    <input type="radio" id="font-gigante" name="font-selector" class="sr-only">
-    <input type="checkbox" id="alto-contraste" class="sr-only">
+    <div id="modal-ajuda" class="modal-overlay" role="dialog" aria-labelledby="modal-titulo" aria-modal="true">
+        <div class="modal-box bg-amber-50 border-4 border-amber-300 rounded-3xl p-6 md:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            
+            <button onclick="fecharModal()" class="absolute top-4 right-4 bg-amber-200 hover:bg-amber-300 text-amber-950 font-black w-10 h-10 rounded-full flex items-center justify-center transition border-2 border-amber-400 text-xl" title="Fechar Janela" aria-label="Fechar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-4 pr-10">
+                <div class="bg-red-100 p-3 rounded-full flex-shrink-0">
+                    <i class="fa-solid fa-life-ring text-red-600 animate-pulse text-3xl"></i>
+                </div>
+                <h2 id="modal-titulo" class="font-bold text-amber-900 text-2xl md:text-3xl">
+                    Canais e Telefones de Confiança
+                </h2>
+            </div>
+
+            <p class="text-amber-950 mb-6 leading-relaxed font-medium">
+                Você nunca estará sozinho! Se ficar nervoso, desconfiado ou achar que caiu em uma armadilha, fale com pessoas de confiança usando estes canais oficiais:
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-white p-5 rounded-2xl shadow-sm border-2 border-amber-200 flex items-center gap-4">
+                    <div class="bg-rose-100 text-rose-700 p-4 rounded-full flex-shrink-0">
+                        <i class="fa-solid fa-house-user text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-slate-800 text-lg">Família e Vizinhos</h3>
+                        <p class="text-sm text-gray-600">Peça para algum neto, filho ou vizinho olhar a mensagem do seu celular.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl shadow-sm border-2 border-amber-200 flex items-center gap-4">
+                    <div class="bg-blue-100 text-blue-700 p-4 rounded-full flex-shrink-0">
+                        <i class="fa-solid fa-building-columns text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-slate-800 text-lg">Atrás do seu Cartão</h3>
+                        <p class="text-sm text-gray-600">O número verdadeiro do banco está sempre escrito no verso do seu cartão.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl shadow-sm border-2 border-amber-200 flex items-center gap-4">
+                    <div class="bg-amber-100 text-amber-800 p-4 rounded-full flex-shrink-0 font-black text-xl">
+                        100
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-slate-800 text-lg">Disque 100</h3>
+                        <p class="text-sm text-gray-600">Ligação grátis para denunciar violações de direitos da pessoa idosa.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl shadow-sm border-2 border-amber-200 flex items-center gap-4">
+                    <div class="bg-slate-200 text-slate-800 p-4 rounded-full flex-shrink-0 font-black text-xl">
+                        190
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-slate-800 text-lg">Polícia Militar (190)</h3>
+                        <p class="text-sm text-gray-600">Para situações de emergência, chantagens ou ameaças diretas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button onclick="fecharModal()" class="inline-block bg-amber-400 hover:bg-amber-300 text-blue-950 font-black py-3.5 px-8 rounded-xl text-lg cursor-pointer transition shadow-md border-2 border-amber-500">
+                    <i class="fa-solid fa-check mr-2"></i> Entendi / Voltar à Página
+                </button>
+            </div>
+
+        </div>
+    </div>
 
     <div class="app-content flex-grow flex flex-col transition-colors duration-300">
 
-        <header class="bg-blue-900 text-white shadow-md sticky top-0 z-50 transition-colors duration-300">
+        <header class="bg-blue-900 text-white shadow-md sticky top-0 z-40 transition-colors duration-300">
             <div class="max-w-4xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-shield-halved text-2xl text-amber-400"></i>
@@ -26,13 +92,13 @@
                 
                 <div class="flex flex-wrap items-center gap-2" role="toolbar" aria-label="Controles de Acessibilidade">
                     <span class="text-xs font-semibold mr-1">Tamanho da Letra:</span>
-                    <label for="font-padrao" class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-1.5 px-2.5 rounded-lg text-sm cursor-pointer border border-blue-600 transition shadow" tabindex="0" role="button">A</label>
-                    <label for="font-grande" class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-1.5 px-2.5 rounded-lg text-base cursor-pointer border border-blue-600 transition shadow" tabindex="0" role="button">A+</label>
-                    <label for="font-gigante" class="bg-blue-800 hover:bg-blue-700 text-white font-bold py-1.5 px-2.5 rounded-lg text-lg cursor-pointer border border-blue-600 transition shadow" tabindex="0" role="button">A++</label>
+                    <button onclick="alterarFonte('1rem')" class="btn-acessivel bg-blue-800 hover:bg-blue-700 text-white font-bold py-1.5 px-2.5 rounded-lg text-sm transition border border-blue-600 shadow">A</button>
+                    <button onclick="alterarFonte('1.2rem')" class="btn-acessivel bg-blue-800 hover:bg-blue-700 text-white font-bold py-1.5 px-2.5 rounded-lg text-base transition border border-blue-600 shadow">A+</button>
+                    <button onclick="alterarFonte('1.4rem')" class="btn-acessivel bg-blue-800 hover:bg-blue-700 text-white font-bold py-1.5 px-2.5 rounded-lg text-lg transition border border-blue-600 shadow">A++</button>
                     
-                    <label for="alto-contraste" class="ml-2 bg-amber-400 hover:bg-amber-300 text-blue-950 font-bold py-1.5 px-3 rounded-lg text-sm cursor-pointer transition shadow flex items-center gap-2" tabindex="0" role="button">
+                    <button onclick="alternarContraste()" class="btn-acessivel ml-2 bg-amber-400 hover:bg-amber-300 text-blue-950 font-bold py-1.5 px-3 rounded-lg text-sm transition shadow flex items-center gap-2">
                         <i class="fa-solid fa-circle-half-stroke"></i> Contraste
-                    </label>
+                    </button>
                 </div>
             </div>
         </header>
@@ -56,10 +122,10 @@
                     </p>
                     
                     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                        <a href="#central-ajuda" class="bg-amber-400 hover:bg-amber-300 text-blue-950 font-black py-4 px-8 rounded-2xl text-lg md:text-xl text-center shadow-lg hover:shadow-xl transition flex items-center justify-center gap-3 border-4 border-white duration-300 transform hover:scale-105">
+                        <button onclick="abrirModal()" class="bg-amber-400 hover:bg-amber-300 text-blue-950 font-black py-4 px-8 rounded-2xl text-lg md:text-xl text-center shadow-lg hover:shadow-xl transition flex items-center justify-center gap-3 border-4 border-white duration-300 transform hover:scale-105 cursor-pointer">
                             <i class="fa-solid fa-phone-volume text-2xl"></i>
                             PRECISA DE AJUDA? VEJA TELEFONES AQUI!
-                        </a>
+                        </button>
                         <span class="text-sm md:text-base text-blue-200 text-center sm:text-left font-medium">
                             Clique acima a qualquer momento se precisar falar com alguém de confiança.
                         </span>
@@ -77,9 +143,9 @@
                     <details class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden group" open>
                         <summary class="p-5 md:p-6 flex items-center justify-between cursor-pointer hover:bg-slate-50 transition list-none">
                             <div class="flex items-center gap-4">
-                                <div class="bg-amber-100 text-amber-800 p-3.5 rounded-full">
+                                <div class="bg-amber-100 text-amber-800 p-3.5 rounded-full flex-shrink-0">
                                     <i class="fa-solid fa-key text-xl"></i>
-                                }
+                                </div>
                                 <div>
                                     <h3 class="font-bold text-slate-900">Como Cuidar de Suas Senhas</h3>
                                     <p class="text-xs text-gray-500">As chaves invisíveis das suas contas</p>
@@ -106,7 +172,7 @@
                     <details class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden group">
                         <summary class="p-5 md:p-6 flex items-center justify-between cursor-pointer hover:bg-slate-50 transition list-none">
                             <div class="flex items-center gap-4">
-                                <div class="bg-blue-100 text-blue-800 p-3.5 rounded-full">
+                                <div class="bg-blue-100 text-blue-800 p-3.5 rounded-full flex-shrink-0">
                                     <i class="fa-solid fa-comment-dots text-xl"></i>
                                 </div>
                                 <div>
@@ -131,7 +197,7 @@
 
             <section class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-indigo-100 mb-12">
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="bg-indigo-100 text-indigo-800 p-3.5 rounded-full">
+                    <div class="bg-indigo-100 text-indigo-800 p-3.5 rounded-full flex-shrink-0">
                         <i class="fa-solid fa-gavel text-2xl"></i>
                     </div>
                     <h2 class="font-bold text-indigo-900">Seus Direitos no Ambiente Digital</h2>
@@ -145,7 +211,7 @@
                     <div class="bg-indigo-50/70 p-5 rounded-xl border border-indigo-100 flex flex-col justify-between">
                         <div>
                             <div class="text-indigo-700 text-2xl mb-3"><i class="fa-solid fa-user-lock"></i></div>
-                            <h4 class="font-extrabold text-indigo-950 text-lg mb-2">Proteção de Dados (LGPD)</h4>
+                            <h3 class="font-extrabold text-indigo-950 text-lg mb-2">Proteção de Dados (LGPD)</h3>
                             <p class="text-sm text-slate-700">
                                 Empresas, lojas e hospitais não podem repassar, vender ou distribuir o seu telefone ou CPF sem a sua permissão escrita ou autorizada.
                             </p>
@@ -155,7 +221,7 @@
                     <div class="bg-indigo-50/70 p-5 rounded-xl border border-indigo-100 flex flex-col justify-between">
                         <div>
                             <div class="text-indigo-700 text-2xl mb-3"><i class="fa-solid fa-universal-access"></i></div>
-                            <h4 class="font-extrabold text-indigo-950 text-lg mb-2">Acessibilidade Digital</h4>
+                            <h3 class="font-extrabold text-indigo-950 text-lg mb-2">Acessibilidade Digital</h3>
                             <p class="text-sm text-slate-700">
                                 Pela Lei de Inclusão, órgãos públicos e canais essenciais (como bancos) precisam oferecer sites simples de ler, com letras grandes e amigáveis para pessoas de todas as idades.
                             </p>
@@ -165,9 +231,9 @@
                     <div class="bg-indigo-50/70 p-5 rounded-xl border border-indigo-100 flex flex-col justify-between">
                         <div>
                             <div class="text-indigo-700 text-2xl mb-3"><i class="fa-solid fa-cart-shopping"></i></div>
-                            <h4 class="font-extrabold text-indigo-950 text-lg mb-2">Desistência de Compras</h4>
+                            <h3 class="font-extrabold text-indigo-950 text-lg mb-2">Desistência de Compras</h3>
                             <p class="text-sm text-slate-700">
-                                Se você fizer qualquer compra na internet (como remédio ou roupas) e desistir, você tem o direito garantido por lei de devolver o produto e receber o valor pago de volta em até 7 dias úteis.
+                                Se você fizer qualquer compra na internet (como remédios ou roupas) e desistir, você tem o direito garantido por lei de devolver o produto e receber o valor pago de volta em até 7 dias úteis.
                             </p>
                         </div>
                     </div>
@@ -176,7 +242,7 @@
 
             <section class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-red-100 mb-12">
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="bg-red-100 text-red-800 p-3.5 rounded-full">
+                    <div class="bg-red-100 text-red-800 p-3.5 rounded-full flex-shrink-0">
                         <i class="fa-solid fa-eye text-2xl"></i>
                     </div>
                     <h2 class="font-bold text-red-900">Como Identificar Golpes no Dia a Dia</h2>
@@ -215,7 +281,10 @@
                     </div>
                 </div>
 
-                <div class="bg-emerald-50 rounded-2xl p-6 border border-emerald-200">
+                <div class="bg-emerald-50 rounded-2xl p-6 border border-emerald-200 relative">
+                    <input type="radio" id="radio-golpe" name="quiz-radio" class="sr-only">
+                    <input type="radio" id="radio-seguro" name="quiz-radio" class="sr-only">
+
                     <h3 class="font-bold text-emerald-800 mb-2 flex items-center gap-2">
                         <i class="fa-solid fa-gamepad"></i> Teste Rápido: É Golpe ou é Seguro?
                     </h3>
@@ -232,80 +301,29 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <label for="radio-golpe" class="cursor-pointer bg-red-600 hover:bg-red-700 text-white font-extrabold py-3.5 px-6 rounded-xl text-lg text-center transition flex items-center justify-center gap-3">
-                            <input type="radio" id="radio-golpe" name="quiz-radio" class="sr-only">
                             <i class="fa-solid fa-circle-exclamation"></i> COM CERTEZA É GOLPE!
                         </label>
                         <label for="radio-seguro" class="cursor-pointer bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-6 rounded-xl text-lg text-center transition flex items-center justify-center gap-3">
-                            <input type="radio" id="radio-seguro" name="quiz-radio" class="sr-only">
                             <i class="fa-solid fa-shield-halved"></i> PARECE SEGURO
                         </label>
                     </div>
 
-                    <div id="explicacao-golpe" class="resposta-explicacao bg-emerald-100 border-2 border-emerald-400 p-5 rounded-xl text-emerald-950 font-bold shadow-inner">
-                        <p class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-emerald-700 text-2xl mt-0.5"></i>
-                            <span>Você acertou em cheio! 👏 Isso é um golpe muito conhecido. Eles tentam deixar você assustado com uma compra que nunca existiu para que você dê seus dados do cartão. Se tiver dúvida se comprou algo, olhe diretamente a fatura no aplicativo ou ligue no número atrás do seu cartão real!</span>
-                        </p>
-                    </div>
-
-                    <div id="explicacao-seguro" class="resposta-explicacao bg-red-100 border-2 border-red-400 p-5 rounded-xl text-red-950 font-bold shadow-inner">
-                        <p class="flex items-start gap-3">
-                            <i class="fa-solid fa-triangle-exclamation text-red-700 text-2xl mt-0.5"></i>
-                            <span>Cuidado! ⚠️ Isso é um golpe simulado. Bancos não pedem para você ligar em números suspeitos fornecidos por mensagens de SMS para resolver cancelamentos. Sempre consulte seu banco no canal oficial.</span>
-                        </p>
-                    </div>
-
-                </div>
-            </section>
-
-            <section id="central-ajuda" class="bg-amber-50 rounded-2xl p-6 md:p-8 shadow-lg border-2 border-amber-300">
-                <h2 class="font-bold text-amber-900 mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-life-ring text-red-600 animate-pulse text-3xl"></i> Canais e Telefones de Confiança
-                </h2>
-                <p class="text-amber-950 mb-6 leading-relaxed">
-                    Você nunca estará sozinho! Se ficar nervoso, desconfiado ou achar que caiu em uma armadilha, fale com pessoas de confiança usando estes canais oficiais:
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-amber-200 flex items-center gap-4">
-                        <div class="bg-rose-100 text-rose-700 p-4 rounded-full flex-shrink-0">
-                            <i class="fa-solid fa-house-user text-2xl"></i>
+                    <div class="quiz-container">
+                        <div id="explicacao-golpe" class="resposta-explicacao bg-emerald-100 border-2 border-emerald-400 p-5 rounded-xl text-emerald-950 font-bold shadow-inner">
+                            <p class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-700 text-2xl mt-0.5"></i>
+                                <span>Você acertou em cheio! 👏 Isso é um golpe muito conhecido. Eles tentam deixar você assustado com uma compra que nunca existiu para que você dê seus dados do cartão. Se tiver dúvida se comprou algo, olhe diretamente a fatura no aplicativo ou ligue no número atrás do seu cartão real!</span>
+                            </p>
                         </div>
-                        <div>
-                            <h4 class="font-extrabold text-slate-800 text-lg">Família e Vizinhos</h4>
-                            <p class="text-sm text-gray-600">Peça para algum neto, filho ou vizinho de confiança olhar a mensagem do seu celular antes de responder.</p>
+
+                        <div id="explicacao-seguro" class="resposta-explicacao bg-red-100 border-2 border-red-400 p-5 rounded-xl text-red-950 font-bold shadow-inner">
+                            <p class="flex items-start gap-3">
+                                <i class="fa-solid fa-triangle-exclamation text-red-700 text-2xl mt-0.5"></i>
+                                <span>Cuidado! ⚠️ Isso é um golpe simulado. Bancos não pedem para você ligar em números suspeitos fornecidos por mensagens de SMS para resolver cancelamentos. Sempre consulte seu banco no canal oficial.</span>
+                            </p>
                         </div>
                     </div>
 
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-amber-200 flex items-center gap-4">
-                        <div class="bg-blue-100 text-blue-700 p-4 rounded-full flex-shrink-0">
-                            <i class="fa-solid fa-building-columns text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-extrabold text-slate-800 text-lg">Atrás do seu Cartão</h4>
-                            <p class="text-sm text-gray-600">Não confie em telefones que ligaram para você de surpresa. O número verdadeiro do banco está no verso do seu cartão plástico.</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-amber-200 flex items-center gap-4">
-                        <div class="bg-amber-100 text-amber-700 p-4 rounded-full flex-shrink-0">
-                            <span class="text-lg font-black">100</span>
-                        </div>
-                        <div>
-                            <h4 class="font-extrabold text-slate-800 text-lg">Disque 100 (Direitos Humanos)</h4>
-                            <p class="text-sm text-gray-600">Ligação grátis. Use para anunciar golpes, abusos e proteção aos direitos das pessoas da terceira idade.</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-amber-200 flex items-center gap-4">
-                        <div class="bg-slate-200 text-slate-700 p-4 rounded-full flex-shrink-0">
-                            <span class="text-lg font-black">190</span>
-                        </div>
-                        <div>
-                            <h4 class="font-extrabold text-slate-800 text-lg">Polícia Militar (190)</h4>
-                            <p class="text-sm text-gray-600">Em caso de ameaças, abordagens estranhas na rua ou extorsões financeiras diretas.</p>
-                        </div>
-                    </div>
                 </div>
             </section>
 
@@ -314,11 +332,49 @@
         <footer class="bg-blue-950 text-white text-center py-6 px-4 mt-12 transition-colors duration-300">
             <div class="max-w-4xl mx-auto">
                 <p class="text-lg font-semibold">Guia Digital Seguro © 2026</p>
-                <p class="text-xs text-blue-350 mt-1">Navegue com carinho, paciência e segurança sempre.</p>
+                <p class="text-xs text-blue-300 mt-1">Navegue com carinho, paciência e segurança sempre.</p>
             </div>
         </footer>
 
     </div>
 
+    <script>
+        // Funções do Modal
+        function abrirModal() {
+            const modal = document.getElementById('modal-ajuda');
+            modal.classList.add('ativo');
+            document.body.style.overflow = 'hidden'; // Impede rolagem do fundo
+        }
+
+        function fecharModal() {
+            const modal = document.getElementById('modal-ajuda');
+            modal.classList.remove('ativo');
+            document.body.style.overflow = 'auto'; // Restaura rolagem do fundo
+        }
+
+        // Fechar modal ao clicar fora da caixa amarela
+        document.getElementById('modal-ajuda').addEventListener('click', function(e) {
+            if (e.target === this) {
+                fecharModal();
+            }
+        });
+
+        // Fechar modal com a tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                fecharModal();
+            }
+        });
+
+        // Ajuste dinâmico de tamanho de fonte
+        function alterarFonte(tamanho) {
+            document.documentElement.style.setProperty('--font-scale', tamanho);
+        }
+
+        // Alternador de Alto Contraste
+        function alternarContraste() {
+            document.body.classList.toggle('alto-contraste');
+        }
+    </script>
 </body>
 </html>
